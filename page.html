@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESP32 light switch</title>
+  <style>
+    :root {
+      --bg: #f5f6fa;
+      --primary: #0078d7;
+      --text: #333;
+      --card-bg: #fff;
+      --border: #ddd;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-holder {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      width: 90%;
+      max-width: 400px;
+      padding: 2rem;
+    }
+
+    .switch {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 1rem;
+      margin: 0.5rem;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #005ea3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Light Switch Controls</h1>
+  </header>
+
+  <div class="button-holder">
+    <button class="switch" id="toggleBtn">Toggle</button>
+  </div>
+
+  <footer>
+    &copy; Trademarked by Tunnel Hermits cuz yea we made this and not GPT
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    document.getElementById("toggleBtn").addEventListener("click", toggleLed);
+
+    async function toggleLed() {
+      try {
+        await fetch("/toggle");
+      } catch (err) {
+        console.error("Error toggling LED:", err);
+      }
+    }
+
+  </script>
+</body>
+
+</html>
